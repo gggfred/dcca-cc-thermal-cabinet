@@ -94,6 +94,17 @@ sudo systemctl restart nginx.service
 
 This practice is focused on IoT devices, so you need to burn the firmware include in `sensor` folder into your ESP32. For this, you need Arduino IDE.
 
+1. Please, change the next variables to customize the application to your needs:
+```c
+...
+const char* ssid = "YOUR_SSID";
+const char* password = "YOUR_PASSWORD";
+...
+String serverName = "SERVER_URL"; // Replace with your server URL
+...
+```
+2. Connect your ESP32 and upload the firmware.
+
 ## 3. Install AWS api
 
 
@@ -111,7 +122,7 @@ source venv/bin/activate
 ```bash
 pip3 install -r requirements.txt
 ```
-3. You must change the variable `url = "SERVER_URL"` in `api.py` by the url of the server implemented in the section 1.
+3. You must change the variable `url` in `api.py` by the url of the server implemented in the section 1, replace `SERVER_URL`.
 
 ```bash
 url = "SERVER_URL"

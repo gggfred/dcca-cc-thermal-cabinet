@@ -35,7 +35,7 @@ def lambda_handler(event, context):
         # Crear el objeto JSON
         response_obj = {
             'status': "ok",
-            'measures' : json.dumps(ans)
+            'measurements' : json.dumps(ans)
         }
     
         # TODO implement

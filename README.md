@@ -17,7 +17,7 @@ If the temperature raises upper than a threshold or the door was opened or close
 
 First, you can clone this repository whit:
 
-```
+```bash
 git clone https://github.com/gggfred/dcca-cc-thermal-cabinet/tree/main
 ```
 
@@ -27,7 +27,7 @@ Next, install the different instances. Let's follow the next instructions:
 For this part, you must install some packages in your server, after this copy the files from `server` folder in your server machine, at your prefered platform. Then, you need to configure the server. Here you can find the instructions:
 
 ### 1.1 Updating and installing packages
-```
+```bash
 sudo apt update
 sudo apt install python3-venv nginx
 ```
@@ -42,16 +42,16 @@ sudo apt install python3-venv nginx
 To config `myproject` you must create a Python virtual environment and then install the `requirements.txt` into this, as follows:
 
 1. Get into the home folder.
-```
+```bash
 cd ~
 ```
 2. Create the environmet and source it.
-```
+```bash
 python3 -m venv ./venv
 source venv/bin/activate
 ```
 3. Change into project folder and install the required packages
-```
+```bash
 cd myproject
 pip3 install -r requirements.txt
 ```
@@ -65,14 +65,14 @@ Now configure the SystemD daemon and Nginx to brings the public access.
 #### SystemD daemon
 For config the daemon, you must run the next command:
 
-```
+```bash
 sudo systemctl enable myproject.service
 sudo systemctl start myproject.service
 ```
 
 Always you can stop or restart the service with:
 
-```
+```bash
 sudo systemctl stop myproject.service
 sudo systemctl restart myproject.service
 ```
@@ -80,13 +80,13 @@ sudo systemctl restart myproject.service
 #### Nginx
 For config Nginx, you must run the next:
 
-```
+```bash
 sudo ln -s /etc/nginx/sites-available/myproject.conf /etc/nginx/sites-enabled
 ```
 
 So, you can restart Nginx by running:
 
-```
+```bash
 sudo systemctl restart nginx.service
 ```
 
@@ -102,12 +102,23 @@ This practice is focused on IoT devices, so you need to burn the firmware includ
 This application is going to run in your local PC. It's recommended to create a virtual environment into the app `client` folder and install the packages in `requirements.txt`, to achieve this, you can follow the next steps:
 
 1. Change into the `client` folder and create a virtual enviroment.
-```
+```bash
 cd ~/myproject/client
 python3 -m venv ./venv
 source venv/bin/activate
 ```
 2. Install the packages using pip3
-```
+```bash
 pip3 install -r requirements.txt
+```
+3. You must change the variable `url = "SERVER_URL"` in `api.py` by the url of the server implemented in the section 1.
+
+```bash
+url = "SERVER_URL"
+```
+
+Now you can run this application with:
+
+```bash
+python3 main.py
 ```

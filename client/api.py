@@ -43,6 +43,7 @@ def getHistory(id, qty):
     data = response.json()
 
     if response.status_code == 200:
-        return data.get('measurements')
+        return data.get('measurements') or []
     else:
         print(f'Error sending message. Status code: {response.status_code}. Message: {data.get('message')}')
+        return []

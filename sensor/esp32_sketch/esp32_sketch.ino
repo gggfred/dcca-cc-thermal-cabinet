@@ -7,6 +7,7 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
+
 #include "time.h"
 #include <Arduino.h>
 
@@ -14,7 +15,7 @@ const int pinToRead = 23; // Pin de entrada para leer el estado
 const int ledPin = 2;     // Pin del LED de salida
 
 const char *ssid = "YOUR_SSID";
-const char *password = "YOUR_PASSWORD";
+const char *password = "YOUR_PASSWORD";  // 0 if the network is open
 
 // Your Domain name with URL path or IP address with path
 String serverName = "SERVER_URL"; // Replace with your server URL
@@ -67,9 +68,8 @@ long getTime()
   return epochValue;
 }
 
-// CREO EL POST PARA LA PUERTA CERRADA
-
-long postDoorClosed()
+// CREO EL POST PARA LA PUERTA
+long postDoor(String state)
 {
   long doorValue;
   HTTPClient http;
@@ -82,30 +82,7 @@ long postDoorClosed()
   http.addHeader("Content-Type", "application/json");
   StaticJsonDocument<200> doc;
 
-  doc["state"] = "closed";
-  String requestBody;
-  serializeJson(doc, requestBody);
-
-  int httpResponseCode = http.POST(requestBody);
-
-  return doorValue;
-}
-
-// CREO EL POST PARA LA PUERTA ABIERTA
-long postDoorOpen()
-{
-  long doorValue;
-  HTTPClient http;
-
-  String serverPath = serverName + "/door";
-      
-  // Your Domain name with URL path or IP address with path
-  http.begin(serverPath.c_str());
-
-  http.addHeader("Content-Type", "application/json");
-  StaticJsonDocument<200> doc;
-
-  doc["state"] = "open";
+  doc["state"] = state;
   String requestBody;
   serializeJson(doc, requestBody);
 
@@ -144,6 +121,7 @@ void loop()
   // Serial.print("Epoch Time: ");
   // Serial.println(epochTime);
   int pinState = digitalRead(pinToRead);
+  static int lastState = 0;
 
   // Mostrar el estado del pin en el puerto serie
   Serial.print("Estado del pin ");
@@ -151,15 +129,18 @@ void loop()
   Serial.print(": ");
   Serial.println(pinState);
   digitalWrite(ledPin, pinState);
-  delay(10000);
 
-  if (pinState == 1)
-  {
-    postDoorOpen();
-  }
-  else if (pinState == 0)
-  {
-    postDoorClosed();
+  delay(1000);
+
+  if (lastState ^ pinState){
+    if (pinState == 1)
+    {
+      postDoor("open");
+    }
+    else if (pinState == 0)
+    {
+      postDoor("closed");
+    }
   }
 
   if ((millis() - lastTime) > timerDelay)
@@ -177,12 +158,12 @@ void loop()
       // Send HTTP GET request
       http.addHeader("Content-Type", "application/json");
       StaticJsonDocument<200> doc;
-      // Add values in the document
-      //
 
+      // Simulate temperature measure
       long randNumber = random(30, 40);
       Serial.println(randNumber);
-      // delay(10000);
+
+      // Add values in the document
       doc["temperature"] = randNumber;
       doc["epoch"] = getTime();
 
@@ -212,4 +193,6 @@ void loop()
     }
     lastTime = millis();
   }
+
+  lastState = pinState;
 }

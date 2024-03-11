@@ -11,7 +11,7 @@ If the temperature raises upper than a threshold or the door was opened or close
 # Requirements
 - An ESP32.
 - A server deployed in any cloud or place.
-- .
+- AWS DynamoDB, Lambda functions and API-Gateway knowledge.
 
 # Install
 
@@ -41,17 +41,18 @@ sudo apt install python3-venv nginx
 #### myproject
 To config `myproject` you must create a Python virtual environment and then install the `requirements.txt` into this, as follows:
 
-1. Get into the project folder.
+1. Get into the home folder.
 ```
-cd ~/myproject
+cd ~
 ```
 2. Create the environmet and source it.
 ```
 python3 -m venv ./venv
 source venv/bin/activate
 ```
-2. Install the required packages
+3. Change into project folder and install the required packages
 ```
+cd myproject
 pip3 install -r requirements.txt
 ```
 

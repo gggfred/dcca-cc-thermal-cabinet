@@ -92,13 +92,19 @@ sudo systemctl restart nginx.service
 
 ## 2. Install IoT Sensor Device
 
-This practice is focused on IoT devices, so you need to burn the firmware include in `sensor` folder into your ESP32. For this, you need Arduino IDE.
+This practice is focused on IoT devices, so you need to burn the firmware include in `sensor` folder into your ESP32. For this, you need the next:
+
+- Arduino IDE.
+- Install the Espressif Systems's esp32 board support.
+- Install the Benoit Blanchon's ArduinoJson library.
+
+Then, follow the next steps:
 
 1. Please, change the next variables to customize the application to your needs:
 ```c
 ...
 const char* ssid = "YOUR_SSID";
-const char* password = "YOUR_PASSWORD";
+const char* password = "YOUR_PASSWORD"; // 0 if the network is open
 ...
 String serverName = "SERVER_URL"; // Replace with your server URL
 ...

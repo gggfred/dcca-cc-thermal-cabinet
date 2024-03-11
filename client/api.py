@@ -1,6 +1,6 @@
 import requests
 
-url = SERVER_URL
+url = "SERVER_URL"
 
 def getTemperature():
     base_url = f'{url}/measurement'
@@ -40,8 +40,9 @@ def getHistory(id, qty):
 
     response = requests.get(base_url, json=json)
 
+    data = response.json()
+
     if response.status_code == 200:
-        data = response.json()
         return data.get('measurements')
     else:
-        print(f'Error sending message. Status code: {response.status_code}')
+        print(f'Error sending message. Status code: {response.status_code}. Message: {data.get('message')}')

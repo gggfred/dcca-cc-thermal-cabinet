@@ -15,7 +15,7 @@ If the temperature raises upper than a threshold or the door was opened or close
 
 # Install
 
-First, you can clone this repository whit:
+First, you can clone this repository in your local PC, with:
 
 ```bash
 git clone https://github.com/gggfred/dcca-cc-thermal-cabinet/tree/main
@@ -110,6 +110,8 @@ String serverName = "SERVER_URL"; // Replace with your server URL
 ...
 ```
 2. Connect your ESP32 and upload the firmware.
+
+The temperature signals were simulated for this practice, the door state is sense by pin `23` being 0 closed, 1 open.
 
 ## 3. Install AWS api
 

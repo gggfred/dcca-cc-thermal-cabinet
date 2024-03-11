@@ -30,11 +30,12 @@ def getDoorState():
         print(f'Error sending message. Status code: {response.status_code}')
 
 
-def getHistory(qty):
+def getHistory(id, qty):
     base_url = f'{url}/history'
 
     json = {
-        'qty': qty
+        'qty': qty,
+        'unique_id' : id 
     }
 
     response = requests.get(base_url, json=json)

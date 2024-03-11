@@ -54,7 +54,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         tt = []
         temperatures = []
 
-        datalog = api.getHistory(12)
+        datalog = api.getHistory("1", 12)
 
         for i,m in enumerate(datalog):
             tt.append(12 - i)

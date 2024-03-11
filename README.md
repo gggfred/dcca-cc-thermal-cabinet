@@ -66,34 +66,35 @@ Now configure the SystemD daemon and Nginx to brings the public access.
 For config the daemon, you must run the next command:
 
 ```
-$ sudo systemctl enable myproject.service
-$ sudo systemctl start myproject.service
+sudo systemctl enable myproject.service
+sudo systemctl start myproject.service
 ```
 
 Always you can stop or restart the service with:
 
 ```
-$ sudo systemctl stop myproject.service
-$ sudo systemctl restart myproject.service
+sudo systemctl stop myproject.service
+sudo systemctl restart myproject.service
 ```
 
 #### Nginx
 For config Nginx, you must run the next:
 
 ```
-$ sudo ln -s /etc/nginx/sites-available/myproject.conf /etc/nginx/sites-enabled
+sudo ln -s /etc/nginx/sites-available/myproject.conf /etc/nginx/sites-enabled
 ```
 
 So, you can restart Nginx by running:
 
 ```
-$ sudo systemctl restart nginx.service
+sudo systemctl restart nginx.service
 ```
 
 ## 2. Install IoT Sensor Device
 
-This practice is focused on IoT devices, 
+This practice is focused on IoT devices, so you need to burn the firmware include in `sensor` folder into your ESP32. For this, you need Arduino IDE.
 
 ## 3. Install AWS api
+
 
 ## 4. Install GUI application

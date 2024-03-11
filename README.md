@@ -98,3 +98,16 @@ This practice is focused on IoT devices, so you need to burn the firmware includ
 
 
 ## 4. Install GUI application
+
+This application is going to run in your local PC. It's recommended to create a virtual environment into the app `client` folder and install the packages in `requirements.txt`, to achieve this, you can follow the next steps:
+
+1. Change into the `client` folder and create a virtual enviroment.
+```
+cd ~/myproject/client
+python3 -m venv ./venv
+source venv/bin/activate
+```
+2. Install the packages using pip3
+```
+pip3 install -r requirements.txt
+```

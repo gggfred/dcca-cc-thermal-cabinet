@@ -5,14 +5,12 @@ import calendar
 import time
 
 from controller import Controller
-import dbapi
+import cloud_services_api
 
 import logging
 import logging.handlers
-
 my_logger = logging.getLogger('myproject')
 my_logger.setLevel(logging.DEBUG)
-
 handler = logging.handlers.SysLogHandler(address = '/dev/log')
 my_logger.addHandler(handler)
 
@@ -51,13 +49,16 @@ def processData(data, command):
             return ans, code
 
         control.setTemperature(float(pCmd))
-        dbapi.postMeasure(data)
+        cloud_services_api.postMeasure(data)
 
         ans = {'status':'ok'}
         code = 200
     elif command == 'history':
-        pCmd = data.get('qty')
-        measurements = dbapi.getHistory(pCmd)
+        uid = data.get('unique_id')
+        qty = data.get('qty')
+
+        measurements = cloud_services_api.getHistory(uid, qty)
+
         my_logger.debug(f"myproject: {measurements}")
         ans = {'status' : 'ok', 'measurements' : measurements}
         code = 200

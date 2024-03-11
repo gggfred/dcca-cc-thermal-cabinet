@@ -1,5 +1,4 @@
 import telegram
-import dbapi
 
 class Controller():
     def __init__(self) -> None:

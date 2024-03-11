@@ -1,6 +1,6 @@
 import requests
 
-url = "http://ec2-54-81-96-96.compute-1.amazonaws.com"
+url = SERVER_URL
 
 def getTemperature():
     base_url = f'{url}/measurement'

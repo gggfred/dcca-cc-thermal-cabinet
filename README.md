@@ -24,12 +24,12 @@ git clone https://github.com/gggfred/dcca-cc-thermal-cabinet/tree/main
 Next, install the different instances. Let's follow the next instructions:
 
 ## 1. Install Server
-For this part, you must install some packages in your server, after this copy the files from `server` folder in your server machine, at your prefered platform. Then, you need to configure the server. Next are the instructions:
+For this part, you must install some packages in your server, after this copy the files from `server` folder in your server machine, at your prefered platform. Then, you need to configure the server. Here you can find the instructions:
 
 ### 1.1 Updating and installing packages
 ```
-$ sudo apt update
-$ sudo apt install python3-venv nginx
+sudo apt update
+sudo apt install python3-venv nginx
 ```
 
 ### 1.2 Copy files to your server
@@ -41,14 +41,21 @@ $ sudo apt install python3-venv nginx
 #### myproject
 To config `myproject` you must create a Python virtual environment and then install the `requirements.txt` into this, as follows:
 
+1. Get into the project folder.
 ```
-$ cd ~/myproject
-~/myproject$ python3 -m venv ./venv
-~/myproject$ source venv/bin/activate
-(venv) ~/myproject$ pip3 install -r requirements.txt
+cd ~/myproject
+```
+2. Create the environmet and source it.
+```
+python3 -m venv ./venv
+source venv/bin/activate
+```
+2. Install the required packages
+```
+pip3 install -r requirements.txt
 ```
 
-Then, you must specify the url of the AWS api service, in the file `cloud_services_api.py` by changing the variable `API_GATEWAY_URL` for your url. 
+After, you must specify the url of the AWS api service, in the file `cloud_services_api.py` by changing the variable `API_GATEWAY_URL` for your url. 
 
 Also, you must specify the `YOUR_BOT_TOKEN` and `CHAT_ID` variables of `telegram.py` with your telegram credentials, for use this service. To achieve this, please refer to the next link https://core.telegram.org/api
 

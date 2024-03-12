@@ -160,7 +160,12 @@ Repeat this process to create other function, using `MeasurementFromDynamoDB` as
 
 For last, it is necessary to create the API as such, by following the next steps:
 
-1. ....
+1. Access to API Gateway.
+2. Click on `Create API`.
+3. Choose `REST API` to build.
+4. Choose `New API` and enter an API name.
+5. 
+
 
 ## 4. Install GUI application
 

@@ -179,7 +179,27 @@ In this case, the process was repeated three times, in order to create the next 
     - /cc_api_final/history
     - /cc_api_final/measurements
 
+Now it's necessary to create methods for this endpoints. In this case, we should have the next results:
 
+|Path|Method|Lambda Function|
+|----|------|--------|
+|/cc_api_final/history    |GET   | MeasurementsFromDynamoDB |
+|/cc_api_final/measurements    |POST   | MeasurementsToDynamoDB |
+
+To achieve this, we should follow the next steps:
+
+1. Select the resource in which you want to create the method.
+2. Click on `Create method`.
+3. Select a method type (GET, POST).
+4. Select `Lambda function` as integration type.
+5. Choose the `Lambda function`.
+6. Click on `Create method` to finish.
+
+Once you have created the two methods, you should deploy the API, following the next:
+
+1. Click on `Deploy API`
+2. Select a stage or create a new one if you don't have.
+3. Click on `Deploy`
 
 ## 4. Install GUI application
 

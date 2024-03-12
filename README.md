@@ -115,6 +115,52 @@ The temperature signals were simulated for this practice, the door state is sens
 
 ## 3. Install AWS api
 
+At this point, you should create the database in AWS, using DynamoDB for storage the temperature data, and Lambda functions for save and retrieve the data. 
+
+### Create a role
+
+First, is necessary to create a user role, with the permissions for access to AWS, as follows:
+
+1. Access to `IAM` console.
+2. Open `Access management->Roles` tab.
+3. Click on `Create role`
+4. Step 1 - Select trusted entity: Select Lambda on `Service or use case` and click next.
+5. Step 2 - Search by policy name and select:
+    - AWSLambda_FullAccess
+    - AWSLambdaBasicExecutionRole
+    - AWSLambdaDynamoDBExecutionRole
+    - AmazonDynamoDBFullAccess
+6. Step 3 - Give a name, for example `roleDynamoDB`. To finish click on `Create role`.
+
+### Create a DynamoDB instance
+
+Next, are the steps for install the AWS cloud:
+
+1. Access to DynamoDB Dashboard.
+2. Create a DynamoDB Table.
+3. Enter `Measurements` as table name.
+4. Enter `unique_id` as partition key.
+5. Enter `timestamp` as sort key.
+
+### Create Lambda functions
+
+Now, it is necessary to create the Lambda functions, which interacts with DynamoDb by writing and reading data. The code for this functions are in the files `measurement_to_dynamodb.py` and `measurement_from_dynamodb.py`. To achieve this, follow the next steps:
+
+1. Access to Lambda Dashboard.
+2. Create a Lambda function.
+3. Enter `MeasurementToDynamoDB` as funcion name.
+4. Choose Python 3.12 as Runtime.
+5. Change the `execution role` to use an existing role, and choose the `roleDynamoDB` role.
+6. Open the Lambda function `MeasurementsToDynamoDB` to edit it and select the `Code` tab.
+7. Select `lambda_function` tab and paste the code in `measurement_to_dynamodb.py`.
+
+Repeat this process to create other function, using `MeasurementFromDynamoDB` as the name and paste the code in the file `measurement_from_dynamodb.py`.
+
+### API Gateway
+
+For last, it is necessary to create the API as such, by following the next steps:
+
+1. ....
 
 ## 4. Install GUI application
 

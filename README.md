@@ -164,7 +164,21 @@ For last, it is necessary to create the API as such, by following the next steps
 2. Click on `Create API`.
 3. Choose `REST API` to build.
 4. Choose `New API` and enter an API name.
-5. 
+5. Click on `Create API`
+
+Once created the API, you should create the resources (endpoints). In the menu `API Gateway->APIs` click on your API name, and create resources as follows:
+
+1. Click on `Create resource`.
+2. Select the path (endpoint) on which you want to create the resource.
+3. Enter a name for your resource
+4. Click on `Create resource`
+
+In this case, the process was repeated three times, in order to create the next endpoints tree:
+
+- /cc_api_final
+    - /cc_api_final/history
+    - /cc_api_final/measurements
+
 
 
 ## 4. Install GUI application
